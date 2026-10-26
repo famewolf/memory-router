@@ -1,0 +1,26 @@
+{
+  "name": "memory-router",
+  "version": "1.1.0",
+  "description": "Deterministic memory router for AI agents: keyword + FTS-style search over curated Markdown files, no LLM, no embeddings. Includes starter memory tree with pointer catalog, gotchas index, decisions log, hosts inventory, and task-completion protocol.",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "memory",
+    "agent-memory",
+    "context",
+    "markdown",
+    "fts",
+    "router"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/famewolf/memory-router.git"
+  },
+  "homepage": "https://github.com/famewolf/memory-router",
+  "bugs": {
+    "url": "https://github.com/famewolf/memory-router/issues"
+  }
+}
