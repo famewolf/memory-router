@@ -45,7 +45,26 @@ session ever deletes outside its own subdir.
 - Usage: run with no args to preview, `--apply` to act. Re-run after
   applying should report zero candidates.
 
-## Retention for durable findings (adjustable defaults)
+## Durable findings (survive beyond a session)
+
+Session scratch dies with the session. Durable findings — investigation records,
+decisions, facts worth keeping — belong in a **findings directory** outside
+scratch, one file per task:
+
+- Path: `<your-notes-dir>/<task>_findings.md`
+- Created **before** any other work on the first task of a session.
+- Contains: tasks (mirrored from your todo list), questions, verified facts,
+  decisions, and answers. Updated as you work, not at the end.
+- Pruned at handoff/compaction: drop answered questions and off-topic detours;
+  keep only what the next step needs.
+- Referenced from session messages so the next session can find it
+  (e.g., `@/path/to/findings/<task>_findings.md`).
+
+### Why this matters
+
+Without a findings file, context compaction or session death loses everything.
+The findings file is the resume point — the next session reads it and continues
+from where you left off instead of starting from zero.
 
 Findings are never auto-deleted. Suggested policy, set your own numbers:
 untouched 90+ days → compress into an `attic/` archive; attic older than

@@ -75,6 +75,21 @@ Nothing. Seriously: close the session and walk away. Session scratch is
 the janitor (Part 3) reaps it later. Durable notes (what was found, what
 was decided) belong in your session findings, not in todos.
 
+### Step 6b: Durable findings (survive beyond a session)
+
+Session scratch dies with the session. Durable findings — investigation
+records, decisions, facts worth keeping — belong in a **findings directory**
+outside scratch, one file per task:
+
+1. Create `<your-notes-dir>/<task>_findings.md` **before** any other work.
+2. Put every known task and every user question on both your todo list and
+   the findings file.
+3. Update the findings file as you work — append each verified fact.
+4. Prune at handoff/compaction: drop answered questions, keep what the
+   next step needs.
+5. State the findings file path in your first response so the next session
+   can find it.
+
 ## Part 3 — Cleanup: the sessions sweep (monthly, 2 minutes)
 
 Session scratch accumulates: every session leaves a subdir. Who removes it
