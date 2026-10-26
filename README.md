@@ -1,4 +1,4 @@
-# infra-memory — deterministic local memory router
+# memory-router — deterministic local memory router
 
 New here? Start with `USER-GUIDE.md` (step-by-step setup and daily use).
 This file is the internals reference: exact contracts and thresholds.
@@ -63,7 +63,7 @@ misbehaves in specific, documented ways:
 
 ## When it does NOT inject
 
-- Score below 4 (`below-min-score`), no usable terms (`no-usable-terms`),
+- Score below 3 (`below-min-score`), no usable terms (`no-usable-terms`),
   or no file matched (`no-match`) — every decision records its reason in the
   debug log.
 - The same user message was already served and nothing re-armed it.
