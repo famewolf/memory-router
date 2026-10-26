@@ -22,7 +22,7 @@ const LOG_PREFIX = "[infra-memory]";
 const MEMORY_DIR = join(homedir(), ".config", "opencode", "memory");
 const CAPTURE_DIR = join(MEMORY_DIR, "captures");
 
-const INJECT_CAP = 2000;
+const INJECT_CAP = 4000;
 const SEARCH_HITS = 10;
 const READ_CAP = 8000;
 const MIN_TERM_LEN = 3;
@@ -32,7 +32,7 @@ const MIN_TERM_LEN = 3;
  *  and cleared the gate. The score-5+ matches were the ones genuinely routing
  *  to relevant memory; 4 keeps those and drops the noise floor. Tunable at
  *  runtime via `infra_debug`. */
-const MIN_SCORE = 4;
+const MIN_SCORE = 3;
 const CACHE_TTL_MS = 30_000;
 const MAX_DEBUG_LOG_BYTES = 2 * 1024 * 1024;
 const RING_MAX = 50;

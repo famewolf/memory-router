@@ -14,7 +14,7 @@ if (!hits.some((h) => /recipes|gotchas|index/i.test(h.file))) fail("expected rec
 // 2. inject capped + wrapped
 const inject = await buildInject("ghw push fails gitea remote");
 console.log("inject chars:", inject.length);
-if (inject.length > 2000) fail("inject over cap");
+if (inject.length > 4000) fail("inject over cap");
 if (!inject.includes("<infra-memory>")) fail("inject missing wrapper");
 
 // 3. default export shape (V2 {id, setup}, system push uses {type:text})

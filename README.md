@@ -40,9 +40,10 @@ misbehaves in specific, documented ways:
    files decay to 0.5 over 90 days. Phrase bonus: +3 if the full query appears
    as an exact phrase. Simple stemming strips common suffixes (ing, ed, er, est, s)
    with doubled-consonant handling.
-5. **Thresholds (constants in `index.js`):** `MIN_SCORE = 4` (a top file with
-   fewer than 4 term hits injects nothing), `SEARCH_HITS = 10` (search tool
-   returns up to 10), decide() reads the top 3, `INJECT_CAP = 2000` chars.
+5. **Thresholds (constants in `index.js`):** `MIN_SCORE = 3` (a top file with
+   fewer than 3 term hits injects nothing), `SEARCH_HITS = 10` (search tool
+   returns up to 10), decide() reads the top 3, `INJECT_CAP = 4000` chars.
+   With billion-context models, more context can be injected safely.
 6. **Injected text is wrapped** in `<infra-memory>` tags with a pointer to
    the routing catalog — excerpts are pointers, and the model is told to read
    the catalog for routing.
@@ -98,7 +99,24 @@ goes where), `gotchas.md` (known-error index pattern), `decisions.md`
 (decision-log pattern), `hosts.md` (inventory TEMPLATE with RFC 5737
 documentation addresses — replace with real hosts, never real secrets).
 
-## Sharing / secrets
+## Memory conventions (starter tree)
+
+The bundled `default-memory/` starter set encodes these conventions:
+
+- **Pointer catalog (`agents.md`):** one line per topic file, never inline prose. New topic files get a `when:` frontmatter line and a pointer entry.
+- **Append-only decisions (`decisions.md`):** date, decision, reason. Revisit by appending, never rewriting.
+- **Correction history:** when a fact changes, append `(superseded YYYY-MM-DD: <old value>)` instead of overwriting. Keeps the history of changed minds.
+- **Deletion tracking:** when a fact is removed, replace with `(retired YYYY-MM-DD: <reason>)` instead of silently deleting.
+- **Memory-first rule:** before investigating or rediscovering any fact, grep `memory/` FIRST. If the answer is already recorded, use it.
+- **Cap:** <200 lines per file. Split when a file grows beyond it.
+- **Ephemeral vs durable:** session work → scratch dir. Only durable facts (config decisions, gotchas, host facts) go into `memory/`.
+
+## Scoring improvements (v1.1.0)
+
+- **Temporal decay:** files modified within 7 days get full score; older files decay to 0.5 over 90 days.
+- **Phrase bonus:** +3 score if the full query appears as an exact phrase in the file.
+- **Simple stemming:** strips common suffixes (ing, ed, er, est, s) with doubled-consonant handling.
+- **No new dependencies:** CPU-only, no embeddings. Files remain source of truth.
 
 The plugin tree itself holds no personal data. The memory tree WILL (hosts,
 decisions, logs) — that is its job. Before sharing anything that has ever
