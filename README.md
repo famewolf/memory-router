@@ -29,7 +29,7 @@ misbehaves in specific, documented ways:
 3. **Matching is case-sensitive substring against lowercased query terms.**
    Terms come from the user message: lowercased, split on non-alphanumerics,
    minimum 3 chars, English stopwords removed, first 8 kept. A file matches a
-   term iff the term appears verbatim in the raw file text. Consequence:
+   term if the term appears verbatim in the raw file text. Consequence:
    write lowercase-rich prose. An all-CAPS file is nearly invisible; match
    distinctive lowercase inflections too (`completed` covers a query for
    `complete`; bare `COMPLETE` matches nothing).
